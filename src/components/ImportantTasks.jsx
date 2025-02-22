@@ -17,28 +17,30 @@ export default function ImportantTasks({ tasks, setTasks }) {
 
   return (
     <div className="p-5">
-      <h2 className="text-xl font-bold mb-3">⭐ Important Tasks</h2>
+      <h2 className="text-xl font-bold mb-3 text-yellow-600">
+        ⭐ Important Tasks
+      </h2>
       {importantTasks.length === 0 ? (
         <p className="text-gray-500 text-center">No important tasks yet.</p>
       ) : (
-        <ul>
+        <div className="grid gap-4">
           {importantTasks.map((task) => (
-            <li
+            <div
               key={task.id}
-              className="border p-2 rounded mb-2 flex justify-between items-center"
+              className="border p-4 rounded-lg shadow-md bg-yellow-100 flex justify-between items-center hover:shadow-lg transition"
             >
-              <span>
+              <span className="font-medium">
                 {task.name} - {task.date}
               </span>
               <button
                 onClick={() => unmarkImportant(task.id)}
-                className="px-2 py-1 bg-gray-400 text-white rounded"
+                className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
               >
                 ❌ Unmark
               </button>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

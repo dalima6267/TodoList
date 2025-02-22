@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CompletedTasks({ tasks, setTasks }) {
   const [completedTasks, setCompletedTasks] = useState([]);
@@ -18,21 +18,26 @@ export default function CompletedTasks({ tasks, setTasks }) {
   return (
     <div className="p-5">
       <h2 className="text-xl font-bold mb-3">✅ Completed Tasks</h2>
+
+      {/* Card UI for better appearance */}
       {completedTasks.length === 0 ? (
-        <p className="text-gray-500 text-center">No completed tasks yet.</p>
+        <div className="p-5 border rounded-lg shadow-md bg-white text-center">
+          <p className="text-gray-500">No completed tasks yet.</p>
+        </div>
       ) : (
-        <ul>
+        <ul className="space-y-2">
           {completedTasks.map((task) => (
             <li
               key={task.id}
-              className="border p-2 rounded mb-2 flex justify-between items-center"
+              className="p-3 border rounded-lg shadow flex justify-between items-center bg-gray-100 hover:bg-gray-200 transition"
             >
-              <span>
-                {task.name} - {task.date}
+              <span className="text-gray-800 font-medium">
+                {task.name} -{" "}
+                <span className="text-sm text-gray-500">{task.date}</span>
               </span>
               <button
                 onClick={() => unmarkCompleted(task.id)}
-                className="px-2 py-1 bg-gray-500 text-white rounded"
+                className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
               >
                 ❌ Undo
               </button>
